@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <title>Repositories</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>GitHub Repositories</h1>
+<ul>
+    {% for repository in repositories %}
+        <li>
+            <div>{{ repository.full_name }} {{ '(Private)' if repository.private else '' }}</div>
+            <div>
+                <a href="{{ url_for('github.pull_requests', repository_name=repository.full_name, url=repository.pulls_url|urlencode) }}">View
+                    Pull
+                    Requests</a>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+</body>
+</html>

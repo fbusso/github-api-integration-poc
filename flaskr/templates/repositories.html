@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <title>GitHub Organizations</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>GitHub Organizations</h1>
+<ul>
+    {% for org in organizations %}
+        <li>
+            <div>{{ org.login }}</div>
+            <div>
+                <a href="{{ url_for('github.get_repositories', org_name=org.login) }}">View Repositories</a>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+</body>
+</html>
