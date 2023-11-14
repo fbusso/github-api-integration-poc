@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <title>Pull Requests</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>{{ repository_name }} - Pull Requests</h1>
+<ul>
+    {% for pull_request in pull_requests %}
+        <li>
+            <div>{{ pull_request.title }}</div>
+
+            <a href="{{ url_for('github.view_pull_request', user_id=user_id, title=pull_request.title, description=pull_request.body, patch_url=pull_request.patch_url|urlencode) }}">View
+                Pull
+                Request</a>
+        </li>
+    {% endfor %}
+</ul>
+</body>
+</html>

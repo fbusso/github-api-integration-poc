@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="eng">
 <head>
-    <title>GitHub Organizations</title>
+    <title>Repositories</title>
     <style>
         ul {
             list-style: none;
@@ -15,13 +15,15 @@
     </style>
 </head>
 <body>
-<h1>GitHub Organizations</h1>
+<h1>GitHub Repositories</h1>
 <ul>
-    {% for org in organizations %}
+    {% for repository in repositories %}
         <li>
-            <div>{{ org.login }}</div>
+            <div>{{ repository.full_name }} {{ '(Private)' if repository.private else '' }}</div>
             <div>
-                <a href="{{ url_for('github.get_repositories', org_name=org.login) }}">View Repositories</a>
+                <a href="{{ url_for('github.pull_requests', user_id=user_id, repository_name=repository.full_name, url=repository.pulls_url|urlencode) }}">View
+                    Pull
+                    Requests</a>
             </div>
         </li>
     {% endfor %}

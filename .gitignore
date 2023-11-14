@@ -1,0 +1,6 @@
+flaskr/instance/
+venv/
+database/data/
+.idea/
+__pycache__/
+flaskr/migrations/__pycache__/
